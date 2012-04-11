@@ -1,0 +1,31 @@
+%h1 Listing proyects
+
+%table
+  %tr
+    %th Title
+    %th Description
+    %th Begin date
+    %th End time
+    %th Status
+    %th User
+    %th Protect bit
+    %th
+    %th
+    %th
+
+  - @proyects.each do |proyect|
+    %tr
+      %td= proyect.title
+      %td= proyect.description
+      %td= proyect.begin_date
+      %td= proyect.end_time
+      %td= proyect.status_id
+      %td= proyect.user_id
+      %td= proyect.protect_bit
+      %td= link_to 'Show', proyect
+      %td= link_to 'Edit', edit_proyect_path(proyect)
+      %td= link_to 'Destroy', proyect, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New Proyect', new_proyect_path

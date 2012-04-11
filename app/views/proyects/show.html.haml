@@ -1,0 +1,27 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @proyect.title
+%p
+  %b Description:
+  = @proyect.description
+%p
+  %b Begin date:
+  = @proyect.begin_date
+%p
+  %b End time:
+  = @proyect.end_time
+%p
+  %b Status:
+  = @proyect.status_id
+%p
+  %b User:
+  = @proyect.user_id
+%p
+  %b Protect bit:
+  = @proyect.protect_bit
+
+= link_to 'Edit', edit_proyect_path(@proyect)
+\|
+= link_to 'Back', proyects_path
