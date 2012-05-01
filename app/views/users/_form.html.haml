@@ -1,31 +1,32 @@
-= form_for @user do |f|
-  -if @user.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
-      %ul
-        - @user.errors.full_messages.each do |msg|
-          %li= msg
-
-  .field
-    = f.label :name
-    = f.text_field :name
-  .field
-    = f.label :biography
-    = f.text_area :biography
-  .field
-    = f.label :email
-    = f.text_field :email
-  .field
-    = f.label :password
-    = f.text_field :password
-  .field
-    = f.label :user_name
-    = f.text_field :user_name
-  .field
-    = f.label :country_id
-    = f.number_field :country_id
-  .field
-    = f.label :language_id
-    = f.number_field :language_id
-  .actions
-    = f.submit 'Save'
+= form_for @user, :html => { :class => 'form-horizontal' } do |f|
+  .control-group
+    = f.label :name, :class => 'control-label'
+    .controls
+      = f.text_field :name, :class => 'text_field'
+  .control-group
+    = f.label :biography, :class => 'control-label'
+    .controls
+      = f.text_area :biography, :class => 'text_area'
+  .control-group
+    = f.label :email, :class => 'control-label'
+    .controls
+      = f.text_field :email, :class => 'text_field'
+  .control-group
+    = f.label :password, :class => 'control-label'
+    .controls
+      = f.text_field :password, :class => 'text_field'
+  .control-group
+    = f.label :user_name, :class => 'control-label'
+    .controls
+      = f.text_field :user_name, :class => 'text_field'
+  .control-group
+    = f.label :country_id, :class => 'control-label'
+    .controls
+      = collection_select(:user, :country_id, Country.all, :id, :name)
+  .control-group
+    = f.label :language_id, :class => 'control-label'
+    .controls
+      = collection_select(:user, :language_id, Language.all, :id, :name)
+  .form-actions
+    = f.submit nil, :class => 'btn btn-primary'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), users_path, :class => 'btn'

@@ -1,0 +1,44 @@
+- model_class = @task.class
+%h1=t '.title', :default => model_class.model_name.human
+
+%p
+  %strong= model_class.human_attribute_name(:title) + ':'
+  %br
+  = @task.title
+%p
+  %strong= model_class.human_attribute_name(:description) + ':'
+  %br
+  = @task.description
+%p
+  %strong= model_class.human_attribute_name(:difficulty) + ':'
+  %br
+  = @task.difficulty
+%p
+  %strong= model_class.human_attribute_name(:begin_time) + ':'
+  %br
+  = @task.begin_time
+%p
+  %strong= model_class.human_attribute_name(:end_time) + ':'
+  %br
+  = @task.end_time
+%p
+  %strong= model_class.human_attribute_name(:user_id) + ':'
+  %br
+  = @task.user_id
+%p
+  %strong= model_class.human_attribute_name(:proyect_id) + ':'
+  %br
+  = @task.proyect_id
+%p
+  %strong= model_class.human_attribute_name(:tasktype_id) + ':'
+  %br
+  = @task.tasktype_id
+%p
+  %strong= model_class.human_attribute_name(:end_bit) + ':'
+  %br
+  = @task.end_bit
+
+.form-actions
+  = link_to t('.back', :default => t("helpers.links.back")), tasks_path, :class => 'btn'
+  = link_to t('.edit', :default => t("helpers.links.edit")), edit_task_path(@task), :class => 'btn'
+  = link_to t('.destroy', :default => t("helpers.links.destroy")), task_path(@task), :method => "delete", :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')), :class => 'btn btn-danger'

@@ -1,5 +1,3 @@
-%h1 New proyect
-
-= render 'form'
-
-= link_to 'Back', proyects_path
+- model_class = @proyect.class
+%h1=t '.title', :default => t('helpers.titles.new', :model => model_class.model_name.human, :default => "New #{model_class.model_name.human}")
+= render :partial => "form"

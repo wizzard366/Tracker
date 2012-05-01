@@ -1,31 +1,32 @@
-= form_for @proyect do |f|
-  -if @proyect.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@proyect.errors.count, "error")} prohibited this proyect from being saved:"
-      %ul
-        - @proyect.errors.full_messages.each do |msg|
-          %li= msg
-
-  .field
-    = f.label :title
-    = f.text_field :title
-  .field
-    = f.label :description
-    = f.text_area :description
-  .field
-    = f.label :begin_date
-    = f.datetime_select :begin_date
-  .field
-    = f.label :end_time
-    = f.datetime_select :end_time
-  .field
-    = f.label :status_id
-    = f.number_field :status_id
-  .field
-    = f.label :user_id
-    = f.number_field :user_id
-  .field
-    = f.label :protect_bit
-    = f.number_field :protect_bit
-  .actions
-    = f.submit 'Save'
+= form_for @proyect, :html => { :class => 'form-horizontal' } do |f|
+  .control-group
+    = f.label :title, :class => 'control-label'
+    .controls
+      = f.text_field :title, :class => 'text_field'
+  .control-group
+    = f.label :description, :class => 'control-label'
+    .controls
+      = f.text_area :description, :class => 'text_area'
+  .control-group
+    = f.label :begin_date, :class => 'control-label'
+    .controls
+      = f.datetime_select :begin_date, :class => 'datetime_select'
+  .control-group
+    = f.label :end_time, :class => 'control-label'
+    .controls
+      = f.datetime_select :end_time, :class => 'datetime_select'
+  .control-group
+    = f.label :status_id, :class => 'control-label'
+    .controls
+      = collection_select(:proyect, :status_id, Status.all, :id, :name)
+  .control-group
+    = f.label :user_id, :class => 'control-label'
+    .controls
+      = collection_select(:proyect, :user_id, User.all, :id, :user_name)
+  .control-group
+    = f.label :protect_bit, :class => 'control-label'
+    .controls
+      = f.number_field :protect_bit, :class => 'number_field'
+  .form-actions
+    = f.submit nil, :class => 'btn btn-primary'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), proyects_path, :class => 'btn'

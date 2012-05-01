@@ -1,37 +1,40 @@
-= form_for @task do |f|
-  -if @task.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@task.errors.count, "error")} prohibited this task from being saved:"
-      %ul
-        - @task.errors.full_messages.each do |msg|
-          %li= msg
-
-  .field
-    = f.label :title
-    = f.text_field :title
-  .field
-    = f.label :description
-    = f.text_area :description
-  .field
-    = f.label :difficulty
-    = f.number_field :difficulty
-  .field
-    = f.label :begin_time
-    = f.datetime_select :begin_time
-  .field
-    = f.label :end_time
-    = f.datetime_select :end_time
-  .field
-    = f.label :user_id
-    = f.number_field :user_id
-  .field
-    = f.label :proyect_id
-    = f.number_field :proyect_id
-  .field
-    = f.label :tasktype_id
-    = f.number_field :tasktype_id
-  .field
-    = f.label :end_bit
-    = f.number_field :end_bit
-  .actions
-    = f.submit 'Save'
+= form_for @task, :html => { :class => 'form-horizontal' } do |f|
+  .control-group
+    = f.label :title, :class => 'control-label'
+    .controls
+      = f.text_field :title, :class => 'text_field'
+  .control-group
+    = f.label :description, :class => 'control-label'
+    .controls
+      = f.text_area :description, :class => 'text_area'
+  .control-group
+    = f.label :difficulty, :class => 'control-label'
+    .controls
+      = f.number_field :difficulty, :class => 'number_field'
+  .control-group
+    = f.label :begin_time, :class => 'control-label'
+    .controls
+      = f.datetime_select :begin_time, :class => 'datetime_select'
+  .control-group
+    = f.label :end_time, :class => 'control-label'
+    .controls
+      = f.datetime_select :end_time, :class => 'datetime_select'
+  .control-group
+    = f.label :user_id, :class => 'control-label'
+    .controls
+      = collection_select(:task, :user_id, User.all, :id, :user_name)
+  .control-group
+    = f.label :proyect_id, :class => 'control-label'
+    .controls
+      = collection_select(:task, :proyect_id, Proyect.all, :id, :title)
+  .control-group
+    = f.label :tasktype_id, :class => 'control-label'
+    .controls
+      = collection_select(:task, :tasktype_id, Tasktype.all, :id, :name)
+  .control-group
+    = f.label :end_bit, :class => 'control-label'
+    .controls
+      = select( "task", "end_bit", { "True" => "1", "False" => "0"})
+  .form-actions
+    = f.submit nil, :class => 'btn btn-primary'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), tasks_path, :class => 'btn'

@@ -80,4 +80,6 @@ class ProyectsController < ApplicationController
       format.json { head :ok }
     end
   end
+  def test
+  end
 end

@@ -1,9 +1,16 @@
 Tracker::Application.routes.draw do
+  root :to => "home#index"
+  
+
   resources :users
 
   resources :tasks
 
-  resources :proyects
+  resources :proyects do
+    get "test" => "proyects#test"
+  end
+  
+  match 'home/index' => 'home#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

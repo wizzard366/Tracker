@@ -1,0 +1,41 @@
+= form_for @task, :html => { :class => 'form-horizontal' } do |f|
+  .control-group
+    = f.label :title, :class => 'control-label'
+    .controls
+      = f.text_field :title, :class => 'text_field'
+  .control-group
+    = f.label :description, :class => 'control-label'
+    .controls
+      = f.text_area :description, :class => 'text_area'
+  .control-group
+    = f.label :difficulty, :class => 'control-label'
+    .controls
+      = f.number_field :difficulty, :class => 'number_field'
+  .control-group
+    = f.label :begin_time, :class => 'control-label'
+    .controls
+      = f.datetime_select :begin_time, :class => 'datetime_select'
+  .control-group
+    = f.label :end_time, :class => 'control-label'
+    .controls
+      = f.datetime_select :end_time, :class => 'datetime_select'
+  .control-group
+    = f.label :user_id, :class => 'control-label'
+    .controls
+      = collection_select(:task, :user_id, User.all, :id, :user_name)
+  .control-group
+    = f.label :proyect_id, :class => 'control-label'
+    .controls
+      = collection_select(:task, :proyect_id, Proyect.all, :id, :title)
+  .control-group
+    = f.label :tasktype_id, :class => 'control-label'
+    .controls
+      = collection_select(:task, :tasktype_id, Tasktype.all, :id, :name)
+  .control-group
+    = f.label :end_bit, :class => 'control-label'
+    .controls
+      = f.number_field :end_bit, :class => 'number_field'
+      = select( "task", "end_bit", { "True" => "1", "False" => "0"})
+  .form-actions
+    = f.submit nil, :class => 'btn btn-primary'
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), tasks_path, :class => 'btn'

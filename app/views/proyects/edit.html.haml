@@ -1,7 +1,3 @@
-%h1 Editing proyect
-
-= render 'form'
-
-= link_to 'Show', @proyect
-\|
-= link_to 'Back', proyects_path
+- model_class = @proyect.class
+%h1=t '.title', :default => t('helpers.titles.edit', :model => model_class.model_name.human, :default => "Edit #{model_class.model_name.human}")
+= render :partial => "form"
