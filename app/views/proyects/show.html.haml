@@ -53,7 +53,7 @@
   %tbody
     - @proyect.tasks.each do |t|
       %tr
-        %td= t.title
+        %td= link_to t.title, task_path(t)
         %td= t.difficulty
         %td= t.description
         %td= t.begin_time
