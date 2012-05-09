@@ -38,7 +38,7 @@
 %h1 Proyect tasks
 - tasks=@proyect.tasks
 .form-actions
-  = link_to t('.new', :default => t("helpers.links.new")), new_task_path, :class => 'btn btn-success'
+  = link_to t('.new', :default => t("helpers.links.new")), new_task_path({:project_id => @proyect.id}), :class => 'btn btn-success', :remote => true
 %table.table.table-striped
   %thead
     %tr
