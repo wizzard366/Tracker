@@ -45,7 +45,9 @@ class TasksController < ApplicationController
     respond_to do |format|
       if @task.save
 	
-        format.html { redirect_to @task, notice: 'Task was successfully created.' }
+#         format.html { redirect_to @task.proyect, notice: 'Task was successfully created.' }
+	format.html
+	format.js
         format.json { render json: @task, status: :created, location: @task }
       else
         format.html { render action: "new" }
@@ -70,6 +72,21 @@ class TasksController < ApplicationController
         format.json { render json: @task.errors, status: :unprocessable_entity }
       end
     end
+  end
+  
+  def finish
+    @task=Task.find(params[:id])
+    respond_to do | format|
+      if @task.update_attributes(:end_bit=>1);
+	format.html
+	format.js
+      else
+	format.html
+	format.json { render json: @task.errors, status: :unprocessable_entity }
+      end
+	
+    end
+    
   end
 
   # DELETE /tasks/1

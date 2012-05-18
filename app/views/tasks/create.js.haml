@@ -1,0 +1,3 @@
+alert('Task successfully added!');
+$('#newTaskModal').modal('hide');
+$('#tasks_table tbody').append("#{escape_javascript(render :partial=>'appendTask')}");

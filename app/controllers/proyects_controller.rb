@@ -81,5 +81,10 @@ class ProyectsController < ApplicationController
     end
   end
   def test
+    @proyect =Proyect.find(params[:id]).tasks
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 end

@@ -45,10 +45,10 @@ class ProyectsController < ApplicationController
     respond_to do |format|
       if @proyect.save
         format.html { redirect_to @proyect, notice: 'Proyect was successfully created.' }
-        format.js 
+        format.json { render json: @proyect, status: :created, location: @proyect }
       else
         format.html { render action: "new" }
-        format.js 
+        format.json { render json: @proyect.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -81,5 +81,7 @@ class ProyectsController < ApplicationController
     end
   end
   def test
+    
+
   end
 end
