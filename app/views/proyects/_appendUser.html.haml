@@ -1,0 +1,8 @@
+-usr=@user
+%tr
+  %td= link_to usr.user_name, user_path(usr)
+  %td=usr.name
+  %td=usr.email
+  %td
+    = link_to t('.edit', :default => t("helpers.links.edit")), edit_user_path(usr), :class => 'btn btn-mini'
+    

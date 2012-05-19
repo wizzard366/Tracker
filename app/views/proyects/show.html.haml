@@ -76,18 +76,46 @@
     
 
   .tab-pane#Developers
-    %table.table.table-striped
+    %table.table.table-striped#users_table
       %thead
         %tr
-        %th 
-    
+        %th{:colspan=>4}
+          %a{"data-toggle" => "modal",:href=>"#newUserModal",:class=>"btn"}New User
+        %tr
+        %th Name
+        %th User Name
+        %th email
+      %tbody
+        - @proyect.users.each do |usr|
+          %tr
+          %td= link_to usr.user_name, user_path(usr)
+          %td=usr.name
+          %td=usr.email
+          %td
+            = link_to t('.edit', :default => t("helpers.links.edit")), edit_user_path(usr), :class => 'btn btn-mini'
+            
+  
+      
         
 .modal.hide.fade#newTaskModal
   .modal-header
     %button.close{"data-dismiss"=>"modal"}x
     %h2 Add New Tasks
   .modal-body
-    %p Here is going to be the form to add a new task
+    %p 
     - @task=Task.new
     - model_class = @task.class
     = render :partial => "tasks/form"
+    
+.modal.hide.fade#newUserModal
+  .modal-header
+    %button.close{"data-dismiss"=>"modal"}x
+    %h2 Add New User
+  .modal-body
+    =form_for @proyect, :url => adduser_proyect_path,:html => { :method=>'put',:class => 'form-horizontal' ,:remote=> true} do |f|
+      = f.label :user_id, :class => 'control-label'
+      .controls
+        = collection_select(:proyect, :user_id, User.all, :id, :user_name)
+        = f.text_field :id, :class => 'text_area',:value=>"#{@proyect.id}",:type=>"hidden"
+      .form-actions
+        = f.submit nil, :class => 'btn btn-primary'

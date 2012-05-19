@@ -1,0 +1,3 @@
+alert('User successfully linked!');
+$('#newUserModal').modal('hide');
+$('#Users_table tbody').append("#{escape_javascript(render :partial=>'appendUser')}");

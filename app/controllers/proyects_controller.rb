@@ -87,4 +87,16 @@ class ProyectsController < ApplicationController
       format.js
     end
   end
+  
+  def adduser
+    @proyect = Proyect.find(params[:id])
+    @user = User.find(params[:proyect][:user_id])
+    @proyect.users << @user
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+  
+  
 end

@@ -5,11 +5,12 @@ Tracker::Application.routes.draw do
   resources :users
 
   resources :tasks do
-    get "finish", on => :member 
+    get "finish", :on => :member 
   end
 
   resources :proyects do
     get ":id/test" => "homes#index"
+    post "adduser" , :on=> :member
   end
   
   match 'home/index' => 'home#index'

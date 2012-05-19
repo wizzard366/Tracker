@@ -1,0 +1,3 @@
+class ProyectUserRelationController < ApplicationController
+
+end

@@ -10,6 +10,7 @@ Tracker::Application.routes.draw do
 
   resources :proyects do
     get ":id/test" => "homes#index"
+    put "adduser" , :on=> :member
   end
   
   match 'home/index' => 'home#index'
